@@ -1,4 +1,4 @@
-// не забываем подключить sfml или закоментировать строки 7-13, 370-390 и 636
+// не забываем подключить sfml или закоментировать строки 7-13, 370-390 и 737
 
 #include <iostream>
 #include <cmath>
@@ -554,23 +554,124 @@ void four_seven()
 
 void four_eight()
 {
-	int a[4][3] = {
+	int a[3][4] = {
 	5,2,0,10,
 	2,5,2,5,
 	20,0,0,0 };
 
-	double b[2][4] = {
+	double b[4][2] = {
 	1.20,0.5,
 	2.80,0.4,
 	5.0,1.0,
 	2.0,1.5
 	};
+
+	int c[3][2] = {0,0,0,0,0,0};
+
+	for (int i = 0;i<3;i++)
+	{
+		for (int j = 0; j <= 4; j++)
+		{
+			c[i][0] += a[j][i] * b[j][0];
+			c[i][1] += a[j][i] * b[j][1];
+		}
+	}	
+	cout << "1)" << endl;
+	int min=c[0][0] - c[0][1], max=c[0][0]-c[0][1];
+	int minInd = 1, maxInd = 1;
+	for (int i = 1; i < 3; i++)
+	{
+		if (min > c[i][0] - c[i][1])
+		{
+			minInd = i + 1;
+		}
+		if (max < c[i][0] - c[i][1])
+		{
+			maxInd = i + 1;
+		}
+	}
+	cout << "продовец с минимальной выручкой: " << minInd << endl << "продовец с максимальной выручкой: " << maxInd << endl << "2)" << endl;
+	min = c[0][1];
+	max = c[0][1];
+	minInd = 1; 
+	maxInd = 1;
+	for (int i = 1; i < 3; i++)
+	{
+		if (min > c[i][1])
+		{
+			minInd = i + 1;
+		}
+		if (max < c[i][1])
+		{
+			maxInd = i + 1;
+		}
+	}
+	cout << "продавец с минимальными комиссионными: " << minInd << endl << "продавец с максимальными комиссионными: " << maxInd << endl << "3)" << endl;
+	int summ = 0;
+	for (int i = 0; i < 3; i++)
+	{
+		summ += c[i][0] - c[i][1];
+	}
+	cout << "общая выручка за проданные товары: " << summ << endl << "4)" << endl;
+	summ = 0;
+	for (int i = 0; i < 3; i++)
+	{
+		summ += c[i][1];
+	}
+	cout << "общие комиссионные: " << summ << endl << "5)" << endl;
+	summ = 0;
+	for (int i = 0; i < 3; i++)
+	{
+		summ += c[i][0];
+	}
+	cout << "сумма всех прошедшик денег: " << summ << endl;
+}
+
+char simvols[32] = { '0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v' };
+string toSis(int num, int Sis)
+{
+	string resStr = "";
+	if (num < Sis)
+	{
+		resStr += simvols[num];
+	}
+	else
+	{
+		resStr = toSis(num / Sis, Sis) + simvols[num % Sis];
+	}
+	return resStr;
+}
+
+void four_9()
+{
+	string num;
+	string result;
+	int num10 = 0;
+	int numSis = 0;
+	int resSis;
+	cout << "число: ";
+	cin >> num;
+	cout << "система счисления: ";
+	cin >> numSis;
+	cout << "новая СС: ";
+	cin >> resSis;
+	for (int i = num.size()-1; i >= 0; i--)
+	{
+		for (int numSim = 0; numSim <= numSis; numSim++)
+		{
+			if (num[i] == simvols[numSim])
+			{
+				num10 += numSim * pow(numSis,i + 1);
+			}
+		}
+	}
+	result = toSis(num10,resSis);
+	cout << "результат: " << result;
 }
 
 /*------------------------------------------------------------------------------------------*/
 int main()
 {
-
 	setlocale(0, "");
 	int switcher = 0;
 	while (true)
@@ -636,6 +737,12 @@ int main()
 			four_five();
 		case 21:
 			four_six();
+		case 22:
+			four_seven();
+		case 23:
+			four_eight();
+		case 24:
+			four_9();
 		}
 	}
 }
