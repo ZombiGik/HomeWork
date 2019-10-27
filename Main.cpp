@@ -1,4 +1,4 @@
-// не забываем подключить sfml или закоментировать строки 7-12 и 370-390
+// не забываем подключить sfml или закоментировать строки 7-13, 370-390 и 636
 
 #include <iostream>
 #include <cmath>
@@ -10,11 +10,11 @@
 #pragma comment(lib,"sfml-graphics-d")
 #pragma comment(lib, "sfml-window-d")
 #pragma comment(lib, "sfml-system-d")
+using namespace sf;
 
 #define SCALE 20
 
 using namespace std;
-using namespace sf;
 
 void one_one()
 {
