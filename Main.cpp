@@ -1,4 +1,4 @@
-// не забываем подключить sfml или закоментировать строки 7-13, 370-390 и 737
+// не забываем подключить sfml или закоментировать строки 7-13, 370-390 и 752
 
 #include <iostream>
 #include <cmath>
@@ -566,18 +566,19 @@ void four_eight()
 	2.0,1.5
 	};
 
-	int c[3][2] = {0,0,0,0,0,0};
+	double c[3][2] = { 0,0,0,0,0,0 };
+	
 
-	for (int i = 0;i<3;i++)
+	for (int i = 0; i < 3; i++)
 	{
-		for (int j = 0; j <= 4; j++)
+		for (int j = 0; j < 4; j++)
 		{
-			c[i][0] += a[j][i] * b[j][0];
-			c[i][1] += a[j][i] * b[j][1];
+			c[i][0] += a[i][j] * b[i][0];
+			c[i][1] += a[i][j] * b[i][1];
 		}
-	}	
+	}
 	cout << "1)" << endl;
-	int min=c[0][0] - c[0][1], max=c[0][0]-c[0][1];
+	int min = c[0][0] - c[0][1], max = c[0][0] - c[0][1];
 	int minInd = 1, maxInd = 1;
 	for (int i = 1; i < 3; i++)
 	{
@@ -590,10 +591,13 @@ void four_eight()
 			maxInd = i + 1;
 		}
 	}
+
+	
+
 	cout << "продовец с минимальной выручкой: " << minInd << endl << "продовец с максимальной выручкой: " << maxInd << endl << "2)" << endl;
 	min = c[0][1];
 	max = c[0][1];
-	minInd = 1; 
+	minInd = 1;
 	maxInd = 1;
 	for (int i = 1; i < 3; i++)
 	{
@@ -606,6 +610,8 @@ void four_eight()
 			maxInd = i + 1;
 		}
 	}
+
+
 	cout << "продавец с минимальными комиссионными: " << minInd << endl << "продавец с максимальными комиссионными: " << maxInd << endl << "3)" << endl;
 	int summ = 0;
 	for (int i = 0; i < 3; i++)
@@ -655,17 +661,22 @@ void four_9()
 	cin >> numSis;
 	cout << "новая СС: ";
 	cin >> resSis;
-	for (int i = num.size()-1; i >= 0; i--)
+
+	for (int i = num.size() - 1; i >= 0; i--)
 	{
-		for (int numSim = 0; numSim <= numSis; numSim++)
+		for (int numSim = 0; numSim < numSis; numSim++)
 		{
+			
 			if (num[i] == simvols[numSim])
 			{
-				num10 += numSim * pow(numSis,i + 1);
+				num10 += numSim * pow(numSis,(num.size() - i)-1);
 			}
 		}
 	}
-	result = toSis(num10,resSis);
+
+
+
+	result = toSis(num10, resSis);
 	cout << "результат: " << result;
 }
 
@@ -727,22 +738,31 @@ int main()
 			break;
 		case 16:
 			four_one();
+			break;
 		case 17:
 			four_two();
+			break;
 		case 18:
 			four_three();
+			break;
 		case 19:
 			four_four();
+			break;
 		case 20:
-			four_five();
+			//four_five();
+			break;
 		case 21:
 			four_six();
+			break;
 		case 22:
 			four_seven();
+			break;
 		case 23:
 			four_eight();
+			break;
 		case 24:
 			four_9();
+			break;
 		}
 	}
 }
